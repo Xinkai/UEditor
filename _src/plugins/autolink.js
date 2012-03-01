@@ -30,7 +30,6 @@
                     start = range.startContainer.childNodes[range.startOffset - 1];
                     if (!start)
                         break;
-
                     range.setStart(start, start.nodeType == 1 ? start.childNodes.length : start.nodeValue.length);
                     range.collapse(true);
                     start = range.startContainer;
@@ -54,13 +53,16 @@
                     charCode = range.toString().charCodeAt(0);
                 } while (charCode != 160 && charCode != 32);
 
-                if (range.toString().replace(new RegExp(domUtils.fillChar, 'g'), '').match(/^(\s*)(?:https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.)/i)) {
-
-                    var a = me.document.createElement('a'),text = me.document.createTextNode(' '),href;
-                    //去掉开头的空格
-                    if (RegExp.$1.length) {
-                        range.setStart(range.startContainer, range.startOffset + RegExp.$1.length);
+                if (range.toString().replace(new RegExp(domUtils.fillChar, 'g'), '').match(/(?:https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.)/i)) {
+                    while(range.toString().length){
+                        if(/^(?:https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.)/i.test(range.toString())){
+                            break;
+                        }
+                        range.setStart(range.startContainer,range.startOffset+1)
                     }
+                    var a = me.document.createElement('a'),text = me.document.createTextNode(' '),href;
+
+                    me.undoManger && me.undoManger.save();
                     a.appendChild(range.extractContents());
                     a.href = a.innerHTML = a.innerHTML.replace(/<[^>]+>/g,'');
                     href = a.getAttribute("href").replace(new RegExp(domUtils.fillChar,'g'),'');
@@ -73,6 +75,7 @@
                     range.collapse(true);
                     sel.removeAllRanges();
                     sel.addRange(range)
+                    me.undoManger && me.undoManger.save();
                 }
             }
         })
