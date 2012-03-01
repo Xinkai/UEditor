@@ -633,24 +633,31 @@ UE.plugins['serialize'] = function () {
                 var child = node.children[0];
 
                 if ( !child || child.type != 'element' || child.tag != 'p' && dtd.p[child.tag] ) {
+                    var tmpPNode = {
+                        type: 'element',
+                        tag: 'p',
+                        attributes: {},
 
-                    node.children = [
-                        {
-                            type: 'element',
-                            tag: 'p',
-                            attributes: {},
-                            children: child ? node.children : [
-                                {
-                                    type : 'element',
-                                    tag : 'br',
-                                    attributes:{},
-                                    closed: true,
-                                    children: []
-                                }
-                            ],
-                            parent : node
-                        }
+                        parent : node
+                    };
+                    tmpPNode.children = [ child ? node.children : [
+                            browser.ie ? {
+                                type:'text',
+                                data:domUtils.fillChar,
+                                parent : tmpPNode
+
+                            }:
+                            {
+                                type : 'element',
+                                tag : 'br',
+                                attributes:{},
+                                closed: true,
+                                children: [],
+                                parent : tmpPNode
+                            }
+                        ]
                     ];
+                    node.children = [tmpPNode];
                 }
                 break;
             case 'table':
