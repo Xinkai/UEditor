@@ -172,13 +172,13 @@
                 $G("cellSpacing").value = table.getAttribute("cellSpacing") || '0';
 
                 var value = table.getAttribute('width');
-                value = !value ? ['',table.offsetWidth,1]:/%$/.test(value) ? value.match(/(\d+)(%)?/) : ['',value.replace(/px/,''),'1'];
+                value = !value ? ['',table.offsetWidth]:/%$/.test(value) ? value.match(/(\d+)(%)?/) : ['',value.replace(/px/,'')];
                 $G("width").value = value[1];
-                $G('widthUnit').options[value[2] ? '0':'1'].selected = true;
+                $G('widthUnit').options[value[2] ? 0:1].selected = true;
                 value = table.getAttribute('height');
-                value = !value ? ['','',1]:/%$/.test(value) ? value.match(/(\d+)(%)?/) : ['',value.replace(/px/,''),'1'];
+                value = !value ? ['','']:/%$/.test(value) ? value.match(/(\d+)(%)?/) : ['',value.replace(/px/,'')];
                 $G("height").value = value[1];
-                $G('heightUnit').options[value[2] ? '0':'1'].selected = true;
+                $G('heightUnit').options[value[2]?0:1].selected = true;
                 $G('borderColor').value = (table.getAttribute('borderColor')||"#000000").toUpperCase();
                 $G("border").value = table.getAttribute("border");
                 for(var i=0,ip,opts= $G("align").options;ip=opts[i++];){
