@@ -13,12 +13,12 @@ UE.plugins['selectall'] = function(){
     var me = this;
     me.commands['selectall'] = {
         execCommand : function(){
-            //trace 1081
-//            this.window.focus();
-
-            this.focus();
-            this.document.execCommand('selectAll',false,null);
-
+            //去掉了原生的selectAll,因为会出现报错和当内容为空时，不能出现闭合状态的光标
+            var range = this.selection.getRange();
+            range.selectNodeContents(this.body);
+            if(domUtils.isEmptyBlock(this.body))
+                range.collapse(true);
+            range.select(true);
             this.selectAll = true;
         },
         notNeedUndo : 1
