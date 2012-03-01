@@ -262,7 +262,7 @@ test( '表格刷文本', function () {
 
 /*trace 1096*/
 
-test( 'trace 1096:表格刷表格', function () {
+test( 'trace 1096，1761:表格刷表格', function () {
         var editor = te.obj[0];
         var range = te.obj[1];
         editor.setContent( '<p><span style="background: yellow">hello</span></p><table><tbody><tr><td>hello2</td><td></td></tr><tr><td></td><td>hello3</td></tr></tbody></table>' );
@@ -272,13 +272,12 @@ test( 'trace 1096:表格刷表格', function () {
         editor.currentSelectedArr = [tds[0], tds[2]];
         editor.addListener( 'mouseup', function () {
                 ok( ua.isEqualArray( editor.currentSelectedArr, [tds[1], tds[3]] ), '比较选择的区域' );
-                //1.2版本加了div
-                equal( editor.getElementsByTagName('table')[0].getAttribute( 'border' ), '1', '表格边框宽度相同' );
+                /*如果没有指定border，那么不主动设置border*/
+//                equal( editor.body.getElementsByTagName('table')[0].getAttribute( 'border' ), '1', '表格边框宽度相同' );
                 for ( var index = 0; index < tds.length; index++ ) {
 //            equal( tds[index].style['borderWidth'], '1px', '表格边框宽度相同' );
 //            equal( tds[index].style['borderStyle'], 'solid', '表格边框样式相同' );
                         equal( tds[index].style['borderColor'], tds[0].style['borderColor'], '表格边框颜色相同' );
-
                 }
         } );
         editor.execCommand( 'formatmatch' );
