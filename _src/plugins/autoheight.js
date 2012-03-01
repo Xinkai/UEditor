@@ -23,7 +23,8 @@ UE.plugins['autoheight'] = function () {
             if (me.queryCommandState('source') != 1) {
                 if (!span) {
                     span = me.document.createElement('span');
-                    span.style.cssText = 'width:0;margin:0;padding:0;border:0;clear:both;';
+                    //trace:1764
+                    span.style.cssText = 'display:block;width:0;margin:0;padding:0;border:0;clear:both;';
                     span.innerHTML = '.';
                 }
                 tmpNode = span.cloneNode(true);
