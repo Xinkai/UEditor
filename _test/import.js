@@ -11,6 +11,7 @@
 ///import core.dom.Range;
 ///import core.dom.Selection;
 ///import core.Editor;
+///import core.ajax;
 
 
 
@@ -61,6 +62,7 @@
 ///import plugins.table;
 ///import plugins.contextmenu;
 ///import plugins.pagebreak;
+///import plugins.catchremoteimage;
 
 ///import ui.ui;
 ///import ui.uiutils;
