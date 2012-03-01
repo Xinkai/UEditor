@@ -24,13 +24,13 @@ function geneHTML($caseList, $name=''){
 	date_default_timezone_set('PRC');
 	$url = (isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $_SERVER['PHP_SELF'];
 	$html = "<!DOCTYPE><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<style>td, th {border: 1px solid white;}</style></head><body><div>
+<style>td, th {border: 1px solid black;}</style></head><body><div>
 <h2 align='center'>自动化用例测试结果".date('Y-m-d H:i:s')."</h2>
 <a href='http://$url/../../../../report/base/$name' style='font:normal bolder 12pt Arial' title='效果应该比邮件好'>网页版</a>
-<table cellspacing='0' style='border: 1px solid black; color: #fff; background-color: #0d3349; text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px; text-align: center;'>
+<table cellspacing='0' style='border: 1px solid black; color: #fff; background-color: #F0FFFF; text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px; text-align: center;'>
 <thead><tr><th rowspan='2'>用例名称</th><th rowspan='2'>总覆盖率</th>".getThBrowser($caseList).
-"</tr></thead>".getTrCase($caseList).
-"</table></div>"._srcOnlyList()."</body></html>";
+"</tr></thead>".getTrCase($caseList);
+//  ."</table></div>"._srcOnlyList()."</body></html>"
 	return $html;
 }
 
@@ -97,7 +97,7 @@ function getTrCase($caseList){
 			$fail = $infos['fail'];
 			$total = $infos['total'];
 			$cov = $infos['cov'];
-			$color = $fail == 0 ? '#5E740B' : '#710909';
+			$color = $fail == 0 ? '#02C874' : '#CD5C5C';
 			$trCase .= "<td style='background-color:$color'>$cov%</td><td style='background-color:$color'>$fail</td><td style='background-color:$color'>$total</td>";
 		}
 
