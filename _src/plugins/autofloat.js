@@ -90,7 +90,7 @@
         }
         var defer_updateFloating = utils.defer(function(){
             updateFloating();
-        },100,true);
+        },browser.ie ? 200 : 100,true);
 
         me.addListener('destroy',function(){
             domUtils.un(window, ['scroll','resize'], updateFloating);
