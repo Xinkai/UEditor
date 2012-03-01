@@ -5,7 +5,7 @@ test( '全选后删除', function () {
         var range = te.obj[1];
         var body = editor.body;
         editor.setContent( '<p>hello</p><table><tbody><tr><td></td><td></td></tr></tbody></table><p>hello2</p>' );
-        editor.focus();
+
         editor.execCommand( 'selectall' );
         editor.execCommand( 'delete' );
         if ( baidu.editor.browser.ie )
