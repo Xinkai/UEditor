@@ -42,7 +42,6 @@ test( 'trace1743 :content is null', function () {
         var range = te.obj[1];
         editor.setContent( '<p><br></p>' );
         //TODO 现在必须先focus再selectall，trace1743
-        editor.focus();
         editor.execCommand( 'selectAll' );
         equal( ua.getChildHTML( editor.body ), "<p><br></p>", "content is null" );
         //equal(UE.plugins['selectall'].notNeedUndo, 1, "notNeedUndo==1" );
