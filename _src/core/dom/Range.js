@@ -1007,8 +1007,9 @@
                     tmp.appendChild( this.document.createTextNode( fillChar) );
                     start.parentNode.insertBefore( tmp, start );
                     start.parentNode.insertBefore( tmpText, start );
-                    mergSibling(tmpText,'previousSibling');
-
+//                    mergSibling(tmpText,'previousSibling');
+                    mergSibling(tmp,'previousSibling');
+                    mergSibling(start,'nextSibling');
                     nativeRange.moveStart( 'character', -1 );
                     nativeRange.collapse( true );
 
