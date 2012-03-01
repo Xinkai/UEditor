@@ -13,9 +13,12 @@ UE.plugins['selectall'] = function(){
     var me = this;
     me.commands['selectall'] = {
         execCommand : function(){
-            this.document.execCommand('selectAll',false,null);
             //trace 1081
-            this.window.focus();
+//            this.window.focus();
+
+            this.focus();
+            this.document.execCommand('selectAll',false,null);
+
             this.selectAll = true;
         },
         notNeedUndo : 1
