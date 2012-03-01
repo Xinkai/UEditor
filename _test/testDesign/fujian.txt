@@ -1,0 +1,3 @@
+type:doc,pdf,rar,~vsd
+method:每次一个附件，上次一次,每次一个附件，上传多次,每次上传多个，执行一次,每次上传多个，执行多次
+delete:beforeUpload,afterUpload,none

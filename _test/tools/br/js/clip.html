@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Zero Clipboard Test</title>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script language="JavaScript">
+  var clip = null;  
+  function $(id) { return document.getElementById(id); }  
+  function init() {
+   clip = new ZeroClipboard.Client();
+   clip.setHandCursor(true);  
+   clip.addEventListener('mouseOver', function (client) {
+    // update the text on mouse over
+    clip.setText( $('fe_text').value );
+   });
+  
+   clip.addEventListener('complete', function (client, text) {
+    //debugstr("Copied text to clipboard: " + text );
+    alert("该地址已经复制，你可以使用Ctrl+V 粘贴。");
+   });
+
+   clip.glue('clip_button', 'clip_container' );
+  }
+</script>
+</head>
+
+<body onLoad="init()">
+<input id="fe_text" cols=50 rows=5 value=复制内容文本1 >
+<span id="clip_container"><span id="clip_button"><b>复制</b></span></span>
+</body>
+</html>

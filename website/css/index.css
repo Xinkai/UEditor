@@ -1,0 +1,76 @@
+/* index  */
+
+.bananer{
+	height:240px;
+}
+.con{
+	height:720px;
+}
+.con-left{
+	width:620px;height:660px;
+	float:left;
+}
+.con-right{
+	width:220px;height:660px;
+	float:left;
+}
+
+.con-left-item{
+	width:510px;height:auto;margin:8px 0px 10px 0px;padding:6px 0 0 64px;line-height:22px;margin-bottom:15px;
+}
+.con-left-item span{
+    font-size:22px;
+    color:#5591DA;
+}
+
+.i-mini{
+	background-position: 0px -200px;
+}
+.i-bezier{
+	background-position: 0px -400px;
+}
+
+.con-right-download{
+	margin:10px 0px;
+}
+.con-right-faq{
+	height:auto;
+	background:url('../img/index-con-right-faq.gif') no-repeat center top ;
+}
+.con-right-faq-title{
+	height:30px;line-height:30px;font-size:12px;font-weight:bold;text-align:center;color:#656565;
+}
+.con-right-faq-item{
+	width:187px;line-height:19px;margin:12px 0 0 11px;padding-left:10px;
+	
+}
+.con-right-faq-item a{
+	color:#6384c9;text-decoration:none;
+}
+.con-right-faq-footer{
+	height:15px;
+	background:url('../img/index-con-right-faq.gif') no-repeat center bottom ;
+}
+.using{
+	height:76px;line-height:76px;text-indent:30px;position:relative;
+	background:url('../img/index-using.gif') no-repeat ;
+}
+.using a{
+    margin:0 10px;
+}
+.using a:link, .using a:visited {
+    color: #0056A9;
+}
+.i-sina{
+	background-position: 0px -50px;
+}
+.i-autodesk{
+	background-position: 0px -100px;
+}
+.i-opera{
+	background-position: 0px -150px;
+}
+.using-footer{
+	width:15px;height:76px;position:absolute;right:0px;top:0px;
+	background:url('../img/index-using.gif') no-repeat right;
+}

@@ -1,0 +1,25 @@
+上线流程
+
+修改项目里的_src/editor.js里的UE.version
+修改项目里的website/changelog.html
+修改项目里的download.html下载地址
+修改项目里的index.html的下载地址
+
+
+登陆fe机器
+win:点击开始按钮选择运行，快捷键为win+r    在地址栏里输入\\fe.baidu.com\g回车
+用户名为g，密码为空
+
+配置secureCRT   地址为relay02.baidu.com
+端口22    用户名为邮箱账号    密码+token
+
+登陆后会在g目录下，打开public_html/ueditor
+
+右键选择svn工具，选中export，输入将发布的版本svn地址
+将public_html/ueditor下的bae_client.sh和bae.conf复制到导出的目录下
+修改bae.conf里的版本号
+
+制作新版本的的utf-8和gbk版本的压缩包，放到website/download下
+（转码工具在项目的download文件夹下transcode.rar）
+运行sh bae_client.sh upload .
+到bae上发布新版本bae.baidu.com

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title> 公式编辑器demo </title>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+ </head>
+
+ <body>
+  <table id="signal-list"	border="1" width="80%" style="margin:0 auto;background-color:#eee">
+	<tr>
+		<td	width="50%">
+			<table	border="1">
+				<tr>
+					<td	data="\log">log</td>
+					<td	data="\sin">sin</td>
+					<td	data="\times">乘以</td>
+					<td	data="\div">除以</td>
+					<td	data="\alpha">α</td>
+					<td	data="\beta">β</td>
+				</tr>
+			</table>
+		</td>
+		<td	width="50%">
+			<table	border="1" id="formula-list">
+				<tr>
+					<td	data="{x}^{a}">x<sup>a</sup></td> <!--{x}^{a}-->
+					<td	data="\log_{e} x^{2}">log<sub>e</sub>x<sup>2</sup></td><!-- \log_{e} x^{2} -->
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td><textarea id="textarea" style="width:100%;height:100px;overflow:auto;"></textarea></td>
+		<td><div	id="result-area">$${}$$</div></td><!--x = \div \times \beta \alpha {-b \pm \sqrt{b^2-4ac} \over 2a}. -->
+	</tr>
+  </table>
+  <script type="text/javascript">
+  <!--
+	var signalList = document.getElementById('signal-list'),
+		textEditor = document.getElementById('textarea'),
+		bk;
+	textEditor.onmouseup = function (){
+		document.selection && (bk = document.selection.createRange().getBookmark());
+	}
+	textEditor.onchange = function (){
+		updateFormula.call(this, this.value);
+	}
+	signalList.onclick = function (e){
+		var e = e || window.event,
+			target = e.target||e.srcElement,
+			signal,
+			posStart,
+			posEnd;
+		if (target.tagName.toLowerCase() === 'td' && (signal = target.getAttribute('data'))){
+			if(!((posStart=textEditor.selectionStart)!=undefined && (posEnd=textEditor.selectionEnd)!=undefined))
+			{
+				var range = textEditor.createTextRange();
+				range.moveToBookmark(bk);
+				range.select();
+				var pos = getPos();
+				posStart = pos[0];
+				posEnd = pos[1];
+			}
+			textEditor.value = textEditor.value.slice(0, posStart) + signal + textEditor.value.slice(posEnd);
+			updateFormula(textEditor.value);
+		}
+	}
+	function updateFormula(text){
+		MathJax.Hub.queue.Push(["Text",MathJax.Hub.getAllJax("result-area")[0],"\\displaystyle{"+text+"}"]);
+	}
+	function getPos(){
+		var start,end;
+		var range = document.selection.createRange();
+		var range_all = document.body.createTextRange();
+		var textBox = document.getElementById('textarea');
+		range_all.moveToElementText(textBox);
+		for (start=0; range_all.compareEndPoints("StartToStart", range) < 0; start++)
+		 range_all.moveStart('character', 1);
+		for (var i = 0; i <= start; i ++){
+		 if (textBox.value.charAt(i) == '\n')
+			 start++;
+		}
+		var range_all = document.body.createTextRange();
+		range_all.moveToElementText(textBox);
+
+		for (end = 0; range_all.compareEndPoints('StartToEnd', range) < 0; end ++)
+		  range_all.moveStart('character', 1);
+
+		for (var i = 0; i <= end; i ++){
+		  if (textBox.value.charAt(i) == '\n')
+			  end ++;
+		}
+		return [start, end];
+	}
+  //-->
+  </script>
+ </body>
+</html>

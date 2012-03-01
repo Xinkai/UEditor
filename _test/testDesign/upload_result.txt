@@ -1,0 +1,17 @@
+type	method	delete
+doc	每次一个附件，上传多次	afterUpload
+pdf	每次上传多个，执行一次	afterUpload
+rar	每次一个附件，上次一次	beforeUpload
+rar	每次上传多个，执行多次	afterUpload
+doc	每次上传多个，执行一次	beforeUpload
+pdf	每次一个附件，上传多次	beforeUpload
+doc	每次一个附件，上次一次	none
+pdf	每次一个附件，上次一次	afterUpload
+rar	每次一个附件，上传多次	none
+rar	每次上传多个，执行一次	none
+pdf	每次上传多个，执行多次	none
+doc	每次上传多个，执行多次	beforeUpload
+~vsd	每次一个附件，上传多次	afterUpload
+~vsd	每次上传多个，执行一次	none
+~vsd	每次上传多个，执行多次	beforeUpload
+~vsd	每次一个附件，上次一次	afterUpload

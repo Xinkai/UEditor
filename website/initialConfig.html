@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="UEditor,Editor,javascript 编辑器,编辑器,百度编辑器,百度 Editor" />
+<meta name="description" content="编辑器初始化参数" >
+<title>UEditor - 初始化参数</title>
+<link rel="stylesheet" href="css/public.css" type="text/css">
+<link rel="stylesheet" href="css/onlinedemo.css" type="text/css">
+<link rel="stylesheet" href="css/document.css" type="text/css">
+    <style type="text/css">
+        #editor {
+            width: 620px;
+        }
+        .red{
+            color:red;
+        }
+        .con-right-con{
+            overflow:hidden;
+        }
+        ol{
+            display: block;
+            list-style-type: decimal;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            -webkit-padding-start: 40px;
+            margin:10px 0;
+            padding-left:30px;
+        }
+        pre{
+            padding: 0;
+            margin: 15px 0;
+            padding: 8px;
+            line-height: 1.3em;
+            border: 1px solid #A4D4EC;
+            background: #E9F5FC;
+            border-radius: 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3 class="f18">编辑器初始化参数说明</h3>
+    <table class="con-table" cellPadding="0" cellSpacing="1">
+
+        <tr>
+            <th>参数名</th>
+            <th>说明</th>
+            <th>类型</th>
+            <th>默认值</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>将编辑器渲染到容器的id</td>
+            <td>String</td>
+            <td>""</td>
+        </tr>
+        <tr>
+            <td>initialContent</td>
+            <td>初始化编辑器的内容</td>
+            <td>String</td>
+            <td>""</td>
+        </tr>
+        <tr>
+            <td>minFrameHeight</td>
+            <td>编辑器最小高度</td>
+            <td>Number</td>
+            <td>200</td>
+        </tr>
+        <tr>
+            <td>textarea</td>
+            <td>提交表单时，服务器端接收编辑器内容的名字</td>
+            <td>String</td>
+            <td>"editorValue"</td>
+        </tr>
+        <tr>
+            <td>initialStyle</td>
+            <td>编辑器内部样式</td>
+            <td>String</td>
+            <td>""</td>
+        </tr>
+        <tr>
+            <td>autoHeightEnabled</td>
+            <td>是否启用编辑器自动增高属性，true为启用</td>
+            <td>Boolean</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>enterTag</td>
+            <td>编辑器回车标签。p或br</td>
+            <td>String</td>
+            <td>"p"</td>
+        </tr>
+        <tr>
+            <td>maxUndoCount</td>
+            <td>最多可以回退的次数</td>
+            <td>Number</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>maxInputCount</td>
+            <td>当输入的字符数超过该值时，保存一次现场</td>
+            <td>Number</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>selectedTdClass</td>
+            <td>设定选中td的样式名称</td>
+            <td>String</td>
+            <td>"selectTdClass"</td>
+        </tr>
+        <tr>
+            <td>pasteplain</td>
+            <td>是否纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴</td>
+            <td>Boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>focus</td>
+            <td>初始化时，是否让编辑器获得焦点true或false</td>
+            <td>Boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>iframeCssUrl</td>
+            <td>要引入css的url</td>
+            <td>String</td>
+            <td>""</td>
+        </tr>
+        <tr>
+            <td>serialize</td>
+            <td>配置过滤器所使用的规则</td>
+            <td>function</td>
+            <td>null</td>
+        </tr>
+        <tr>
+            <td>removeFormatTags</td>
+            <td>配置格式刷删除的标签</td>
+            <td>String</td>
+            <td>'b,big,code,del,dfn,
+        em,font,i,ins,kbd,q,samp,
+        small,span,strike,strong,
+        sub,sup,tt,u,var'</td>
+        </tr>
+        <tr>
+            <td>removeFormatAttributes</td>
+            <td>配置格式刷删除的属性</td>
+            <td>String</td>
+            <td>'class,style,lang,width,
+        height,align,hspace,valign'</td>
+        </tr>
+        <tr>
+            <td>autoClearinitialContent</td>
+            <td>是否自动清除编辑器初始内容</td>
+            <td>Boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>indentValue</td>
+            <td>初始化时，首行缩进距离</td>
+            <td>String</td>
+            <td>2em</td>
+        </tr>
+        <tr>
+            <td>pageBreakTag</td>
+            <td>分页符</td>
+            <td>String</td>
+            <td>_baidu_page_break_tag_</td>
+        </tr>
+        <tr>
+            <td>autoFloatEnabled</td>
+            <td>是否保持toolbar的位置不动</td>
+            <td>Boolean</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td>elementPathEnabled</td>
+            <td>是否启用elementPath</td>
+            <td>Boolean</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td>wordCount</td>
+            <td>是否开启字数统计</td>
+            <td>Boolean</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td>maximumWords</td>
+            <td>允许的最大字符数</td>
+            <td>Number</td>
+            <td>10000</td>
+        </tr>
+    </table>
+</div>
+
+<div style="display:none">
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F15e4b78d747342b556abed311dc48513' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+</body>
+</html>
+
+

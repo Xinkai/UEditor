@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>各种方法接口</title>
+    <script type="text/javascript" charset="utf-8"  src="js/editor_config.js"></script>
+    <script type="text/javascript" charset="utf-8"  src="js/editor_ui_all.js"></script>
+    <link rel="stylesheet" type="text/css" href="themes/default/ueditor.css"/>
+    <link rel="stylesheet" href="css/document.css" type="text/css">
+    <style>
+        #editor { width: 1024px;}
+        .method{
+            color:blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .methodcontent{
+            margin-top: 20px;
+        }
+        .con-table{
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<h1>ueditor编辑器完整功能</h1>
+<div id="editor">
+</div>
+<div class="methodcontent">
+    <table class="con-table" cellPadding="0" cellSpacing="1">
+        <tr>
+            <th>方法名</th>
+            <th>说明</th>
+            <th>测试</th>
+        </tr>
+        <tr>
+            <td>editor.getContent()</td>
+            <td>获得内容</td>
+            <td><span class="method" onclick="alert(editor.getContent())">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.getContentTxt()</td>
+            <td>获得纯文本内容</td>
+            <td><span class="method" onclick="alert(editor.getContentTxt())">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.setContent('欢迎使用编辑器')</td>
+            <td>设置编辑器内容</td>
+            <td><span class="method" onclick="editor.setContent('欢迎使用编辑器');">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.hasContents()</td>
+            <td>判断是否有内容</td>
+            <td><span class="method" onclick="alert(editor.hasContents())">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.enableAutoHeight()</td>
+            <td>启用自动增高功能</td>
+            <td><span class="method" onclick="editor.enableAutoHeight()">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.disableAutoHeight()</td>
+            <td>禁用自动增高功能</td>
+            <td><span class="method" onclick="editor.disableAutoHeight()">try</span></td>
+        </tr>
+        <tr>
+            <td>editor.reset()</td>
+            <td>重置编辑器</td>
+            <td><span class="method" onclick="editor.reset()">try</span></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({
+        id:'editor',
+        autoClearinitialContent:true,
+        iframeCssUrl :'themes/default/iframe.css'
+    });
+    editor.render();
+</script>
+</body>
+</html>

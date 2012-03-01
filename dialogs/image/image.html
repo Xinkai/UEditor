@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>图片上传</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <style type="text/css">
+        *{ padding: 0;margin: 0}
+        body{font-size: 12px;color: #888}
+        .wrapper{ width: 640px;margin: 0 auto; overflow: auto; zoom:1;position: relative;padding: 10px 0}
+        #tabHeads{position: relative; width:610px;padding-left:9px;z-index: 10;}
+        #tabHeads span{
+            display:inline-block;
+            width: 82px;
+            height:30px;
+            text-align: center;
+            cursor: pointer;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            background:url("../../themes/default/images/dialog-title-bg.png") repeat-x;
+        }
+        #tabHeads span.focus{ border-bottom: none; height: 31px;background-color: #fff;}
+        #tabBodys{ border: 1px solid #ccc; width:620px;height:325px;margin: 0 auto;position: relative;top:-1px;}
+        .panel { position: absolute; width: 620px;height:325px;background: #fff;}
+        #remote{ z-index: 200;}
+        #remote table{border-collapse: collapse;width: 620px; height: 300px; margin-top: 5px;}
+        #remote td.label{text-align: center;width: 80px; }
+        #remote td{height: 40px;}
+        td input {
+            width: 150px;
+            height: 21px;
+            line-height: 21px;
+            background: #FFF;
+            border: 1px solid #d7d7d7;
+        }
+        #url {width: 520px;margin-bottom: 2px;}
+        #preview{width: 260px; height: 260px; position: absolute;top:50px; left: 341px; z-index: 9999;background-color: #eee}
+        .lock{
+            position: absolute;
+            width: 45px;
+            height: 40px;
+            top: 68px;
+            left: 260px;
+            background: url("../../themes/default/images/lock.gif") -2px -3px no-repeat;
+            line-height: 40px;
+            padding-top:13px;
+        }
+        .duiqi{background: url("../../themes/default/images/imgLable.png") -12px 2px no-repeat; width: 62px; height: 38px;float: left}
+        #remoteFloat div,#localFloat div{cursor:pointer;opacity: 0.5;filter: alpha(opacity = 50);margin-left:1px;width:38px;height:36px;float:left;}
+        #remoteFloat .focus,#localFloat .focus{opacity: 1;filter: alpha(opacity = 100)}
+        #maskIframe{ width: 620px; height: 325px; position: absolute;z-index: 100; }
+        #flashContainer { margin: 6px;}
+        #upload{width: 100px;height: 30px;float: right; background: url("../../themes/default/images/upload.png");margin:3px 6px 0 0;cursor: pointer;}
+        #imageList{width: 620px;height: 315px; margin-top: 10px;overflow:hidden;overflow-y: auto;}
+        #imageList img{cursor: pointer ;border: 2px solid #fff}
+        #imgManager #imageList div{float: left;width: 100px;height: 100px;margin: 5px 10px;}
+        #imgSearch input{height: 21px;}
+        #imgSearchTxt{margin-left:15px;background: #FFF;width:200px;height:21px;border: 1px solid #d7d7d7;}
+        #searchList{width: 620px;overflow: auto;zoom:1;height: 270px;}
+        #searchList div{float: left;width: 120px;height: 135px;margin: 5px 15px;}
+        #searchList img{margin: 2px 8px;cursor: pointer;border: 2px solid #fff} /*不用缩略图*/
+        #searchList p{margin-left: 10px;}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="imageTab">
+            <div id="tabHeads">
+                <span tabSrc="remote" class="focus">网络图片</span>
+                <span tabSrc="local">本地上传</span>
+                <span tabSrc="imgManager">在线管理</span>
+                <span tabSrc="imgSearch">图片搜索</span>
+            </div>
+            <div id="tabBodys">
+                <div id="remote" class="panel">
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="label"><label for="url">地 址：</label></td>
+                            <td><input id="url" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="width">宽 度：</label></td>
+                            <td><input type="text" id="width"/> px</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="height">高 度：</label></td>
+                            <td><input type="text" id="height"/> px</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="border">边 框：</label></td>
+                            <td><input type="text" id="border"/> px</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="vhSpace">边 距：</label></td>
+                            <td><input type="text" id="vhSpace"/> px</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="title">描 述：</label></td>
+                            <td><input type="text" id="title"/></td>
+                        </tr>
+                        <tr>
+                            <td class="label">对 齐：</td>
+                            <td id="remoteFloat"></td>
+                        </tr>
+                    </table>
+
+                    <div id="preview"></div>
+                    <div class="lock"><input id="lock" type="checkbox" title="锁定宽高比例" checked="checked"></div>
+                </div>
+                <div id="local" class="panel">
+                    <div id="flashContainer"></div>
+                    <div><div id="upload" style="display: none" ></div><div class="duiqi"></div><div id="localFloat"></div></div>
+                </div>
+                <div id="imgManager" class="panel">
+                    <div id="imageList">图片加载中……</div>
+                    <!--<p id="pageControler">分页控制器</p>-->
+                </div>
+                <div id="imgSearch" class="panel">
+                    <div style="line-height: 40px;">
+                        <input id="imgSearchTxt" value="请输入搜索关键词" type="text" />
+                        <select id="imgType">
+                            <option value="&s=4&z=0">新闻</option>
+                            <option value="&s=1&z=19">壁纸</option>
+                            <option value="&s=2&z=0">表情</option>
+                            <option value="&s=3&z=0">头像</option>
+                        </select>
+                        <input id="imgSearchBtn" type="button" value="百度一下" />
+                        <input id="imgSearchReset" type="button" value="清空搜索" />
+                    </div>
+                    <div id="searchList"></div>
+                </div>
+                <iframe id="maskIframe" src="about:blank" scrolling="no" frameborder="no"></iframe>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../internal.js"></script>
+    <script type="text/javascript" src="../tangram.js"></script>
+    <script type="text/javascript" src="image.js"></script>
+
+    <script type="text/javascript">
+        //全局变量
+        var imageUrls = [],          //用于保存从服务器返回的图片信息数组
+            selectedImageCount = 0;  //当前已选择的但未上传的图片数量
+        window.onload = function(){
+            //创建Flash相关的参数集合
+            var flashOptions = {
+                container:"flashContainer",                                                    //flash容器id
+                url:'../../server/upload/php/imageUp.php',                                           // 上传处理页面的url地址
+                ext:'{"param1":"参数值1", "param2":"参数值2"}',                                 //可向服务器提交的自定义参数列表
+                fileType:'{"description":"图片", "extension":"*.gif;*.jpeg;*.png;*.jpg"}',     //上传文件格式限制
+                flashUrl:'imageUploader.swf',                                                  //上传用的flash组件地址
+                width:608,          //flash的宽度
+                height:272,         //flash的高度
+                gridWidth:121,     // 每一个预览图片所占的宽度
+                gridHeight:120,    // 每一个预览图片所占的高度
+                picWidth:100,      // 单张预览图片的宽度
+                picHeight:100,     // 单张预览图片的高度
+                uploadDataFieldName:'picdata',    // POST请求中图片数据的key
+                picDescFieldName:'pictitle',      // POST请求中图片描述的key
+                maxSize:2,                         // 文件的最大体积,单位M
+                compressSize:1,                   // 上传前如果图片体积超过该值，会先压缩,单位M
+                maxNum:32,                         // 单次最大可上传多少个文件
+                backgroundUrl:'',                 // flash界面的背景图片,留空默认
+                listBackgroundUrl:'',            // 单个预览框背景，留空默认
+                buttonUrl:'',                     // 上传按钮背景，留空默认
+                compressSide:editor.options.compressSide,                 //等比压缩的基准，0为按照最长边，1为按照宽度，2为按照高度
+                compressLength:editor.options.maxImageSideLength        //能接受的最大边长，超过该值Flash会自动等比压缩
+            };
+            //回调函数集合，支持传递函数名的字符串、函数句柄以及函数本身三种类型
+            var callbacks={
+                // 选择文件的回调
+                selectFileCallback: function(selectFiles){
+                    selectedImageCount += selectFiles.length;
+                    if(selectedImageCount) baidu.g("upload").style.display = "";
+                    dialog.buttons[0].setDisabled(true); //初始化时置灰确定按钮
+                },
+                // 删除文件的回调
+                deleteFileCallback: function(delFiles){
+                    selectedImageCount -= delFiles.length;
+                    if (!selectedImageCount) {
+                        baidu.g("upload").style.display = "none";
+                        dialog.buttons[0].setDisabled(false);         //没有选择图片时重新点亮按钮
+                    }
+                },
+                // 单个文件上传完成的回调
+                uploadCompleteCallback: function(data){
+                    var info = eval("(" + data.info + ")");
+                    info && imageUrls.push(info);
+                    selectedImageCount--;
+                },
+                // 单个文件上传失败的回调,
+                uploadErrorCallback: function (data){
+                    //console && console.log(data);
+                },
+                // 全部上传完成时的回调
+                allCompleteCallback: function(){
+                    dialog.buttons[0].setDisabled(false);    //上传完毕后点亮按钮
+                }
+                // 文件超出限制的最大体积时的回调
+                //exceedFileCallback: 'exceedFileCallback',
+                // 开始上传某个文件时的回调
+                //startUploadCallback: startUploadCallback
+            };
+            imageUploader.init(flashOptions,callbacks);
+            
+        };
+    </script>
+</body>
+</html>
