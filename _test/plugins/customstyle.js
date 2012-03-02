@@ -1,7 +1,7 @@
 /**
  *
  */
-module( 'plugins.ccustomstyle' );
+module( 'plugins.customstyle' );
 
 test( 'block的元素', function () {
         var editor = te.obj[0];
