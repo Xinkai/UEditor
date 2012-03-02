@@ -175,8 +175,8 @@ test( '插入分页符,源码中显示：_baidu_page_break_tag_', function () {
         else {//适用于ie6,7
                 equal( pagebreak.attributes['class'].nodeValue, 'pagebreak', 'pagebreak' );
         }
-        var space = baidu.editor.browser.ie ? '&nbsp;' : '';
-        equal( editor.getContent(), '<p>' + space + '</p>_baidu_page_break_tag_<p><br /></p>' );
+        var br = baidu.editor.browser.ie ? '&nbsp;' : '<br>';
+        equal( editor.getContent(), '<p>' +br + '</p>_baidu_page_break_tag_<p>'+br+'</p>' );
         document.body.removeChild( div );
 } );
 
