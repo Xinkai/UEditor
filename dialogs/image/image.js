@@ -170,6 +170,7 @@ var imageUploader = {};
         imgObj.floatStyle = align;
         imgObj.vspace = imgObj.hspace = vhSpace.value;
         imgObj.title = title.value;
+        imgObj.style = "width:" + width.value + "px;height:" + height.value+ "px;";
         editor.execCommand( "insertImage", imgObj );
         editor.fireEvent( "catchRemoteImage" );
     }
