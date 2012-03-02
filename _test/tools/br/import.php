@@ -21,7 +21,7 @@ if(!Config::$DEBUG){
  * 此外，本脚本支持引入一个包所有文件（其实也就是一个目录下的所有js文件，**不递归**）
  * IE下，get请求不能超过2083字节，请注意。
  */
-$cov = array_key_exists('cov', $_GET) ? $_GET['cov'] : false;
+$cov = array_key_exists('cov', $_GET) ? true : false;
 $import = 'import.js';
 function importSrc($cov){
 	global $import;
@@ -50,7 +50,7 @@ function importSrc($cov){
 			}
 			else if(Config::$DEBUG)print "fail read file : ".Config::$COVERAGE_PATH.$path;
 		}
-//		else {
+		else {
 		    foreach(Config::$SOURCE_PATH as $i=>$d){
 			    if(file_exists($d.$path)){
 					$source.= file_get_contents($d.$path);
@@ -58,14 +58,10 @@ function importSrc($cov){
 					break;
 		        }
 		    }
-//		}
+		}
 	}
 	return $source;
 }
 //update by bell 2011-03-25, 更新覆盖率相关逻辑
-if(!$cov){
-	echo importSrc(false);
-}else{
-	echo importSrc(true);
-}
+echo importSrc($cov);
 ?>
