@@ -640,7 +640,7 @@ UE.plugins['serialize'] = function () {
 
                         parent : node
                     };
-                    tmpPNode.children = [ child ? node.children : [
+                    tmpPNode.children = [
                             browser.ie ? {
                                 type:'text',
                                 data:domUtils.fillChar,
@@ -655,9 +655,8 @@ UE.plugins['serialize'] = function () {
                                 children: [],
                                 parent : tmpPNode
                             }
-                        ]
                     ];
-                    node.children = [tmpPNode];
+                    node.children =  child ? node.children : [tmpPNode];
                 }
                 break;
             case 'table':
