@@ -71,6 +71,9 @@
             if(container){
                 container.innerHTML = '<iframe id="' + 'baidu_editor_' + this.uid + '"' + 'width="100%" height="100%"  frameborder="0"></iframe>';
                 container.style.overflow = 'hidden';
+                if (ie) {
+                    document.getElementById('baidu_editor_' + this.uid).src = "javascript:(function(){document.open();document.domain='"+document.domain+"';document.close();})()";
+                }
                 this._setup( container.firstChild.contentWindow.document );
             }
 

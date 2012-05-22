@@ -1,10 +1,15 @@
-UEditor�����༭����ʽʹ��github�����а汾������
+对 https://github.com/UEditor/UEditor 的fork。
 
-��ӭ���fork ^-^
+在Baidu的UEditor 1.2.0原版基础上试验性增加对IE跨域访问的支持。
 
-*-the UEditor dev team-*
+用法：
 
-[ueditor.baidu.com](http://ueditor.baidu.com)
+    情景：在www.foo.com调用来自static.foo.com的UEditor文件。
 
+1. 在www.foo.com的HTML的文件头部加入
 
+    document.domain = "foo.com";
 
+2. 在dialogs/internal.js中加入相同的语句，来保证对话框也能够正确访问iframe的parent的资源。
+
+在Chrome，Firefox 15, IE8, IE9中测试通过。其它浏览器暂无测试。

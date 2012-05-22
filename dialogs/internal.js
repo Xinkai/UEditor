@@ -1,4 +1,5 @@
-
+// 替换为域名
+// document.domain = "foo.com";
 
 (function(){
     var parent = window.parent;
